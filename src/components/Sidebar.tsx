@@ -26,14 +26,14 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 bg-white shadow-lg flex flex-col">
+    <div className="w-64 bg-white shadow-lg flex flex-col h-screen">
       {/* Logo/Brand */}
       <div className="p-6 border-b border-gray-200">
         <h1 className="text-xl font-bold text-gray-800">MyApp</h1>
       </div>
 
-      {/* Navigation Menu */}
-      <nav className="flex-1 p-4">
+      {/* Navigation Menu - Scrollable if needed */}
+      <nav className="flex-1 p-4 overflow-y-auto">
         <ul className="space-y-2">
           {menuItems.map((item) => (
             <li key={item.path}>
@@ -54,8 +54,8 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-      {/* User Section */}
-      <div className="p-4 border-t border-gray-200">
+      {/* Fixed User Section at Bottom */}
+      <div className="p-4 border-t border-gray-200 bg-white">
         <div className="mb-4">
           <div className="flex items-center space-x-3 mb-3">
             <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">

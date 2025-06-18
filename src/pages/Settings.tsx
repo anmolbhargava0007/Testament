@@ -10,7 +10,7 @@ import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
 
 const Settings = () => {
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   
@@ -40,8 +40,13 @@ const Settings = () => {
     setLoading(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await updateUser({
+        user_name: formData.user_name,
+        user_email: formData.user_email,
+        user_mobile: formData.user_mobile,
+        gender: formData.gender,
+        is_active: true,
+      });
       
       toast({
         title: "Success!",

@@ -5,8 +5,8 @@ const TopNavigation = () => {
   const { user } = useAuth();
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
-      <div className="flex items-center justify-between">
+    <header className="bg-white shadow-sm border-b border-gray-200 px-6 py-4 h-20">
+      <div className="flex items-center justify-between h-full">
         <div>
           <h2 className="text-2xl font-semibold text-gray-800">
             Welcome back, {user?.user_name}!

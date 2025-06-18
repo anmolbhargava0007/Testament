@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface User {
@@ -14,6 +13,7 @@ interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
   signup: (userData: SignupData) => Promise<void>;
+  updateUser: (userData: Partial<User>) => Promise<void>;
   logout: () => void;
   loading: boolean;
 }
@@ -115,6 +115,38 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const updateUser = async (userData: Partial<User>) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/v1/user`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_id: user?.user_id,
+          ...userData,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.msg || 'Update failed');
+      }
+
+      if (data.success && data.data && data.data.length > 0) {
+        const updatedUser = data.data[0];
+        setUser(updatedUser);
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+      } else {
+        throw new Error('Invalid response format');
+      }
+    } catch (error) {
+      console.error('Update user error:', error);
+      throw error;
+    }
+  };
+
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
@@ -126,6 +158,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     user,
     login,
     signup,
+    updateUser,
     logout,
     loading,
   };
