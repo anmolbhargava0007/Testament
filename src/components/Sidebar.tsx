@@ -15,6 +15,11 @@ const Sidebar = () => {
       icon: '📊',
     },
     {
+      name: 'Test Case Genaration',
+      path: '/testcase',
+      icon: '📊',
+    },
+    {
       name: 'Settings',
       path: '/settings',
       icon: '⚙️',
