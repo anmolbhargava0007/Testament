@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 
-const API_BASE_URL = 'http://3.111.95.184:1929';
+const LLM_BASE_URL = 'http://15.206.121.90:5001'
 
 const TestCase = () => {
   const [userStory, setUserStory] = useState('');
@@ -31,7 +31,7 @@ const TestCase = () => {
 
     setIsGenerating(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/generate_test_cases`, {
+      const response = await fetch(`${LLM_BASE_URL}/generate_test_cases`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ const TestCase = () => {
 
     setIsExecuting(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/run_tests`, {
+      const response = await fetch(`${LLM_BASE_URL}/run_tests`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ const TestCase = () => {
   const loadVisualizationData = async () => {
     setIsLoadingResults(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/download-json`);
+      const response = await fetch(`${LLM_BASE_URL}/download-json`);
       
       if (!response.ok) {
         throw new Error('Failed to load test results');
