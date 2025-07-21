@@ -94,7 +94,7 @@ const Settings = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Profile Settings */}
-        <Card>
+        {/* <Card>
           <CardHeader>
             <CardTitle>Profile Information</CardTitle>
             <CardDescription>
@@ -159,103 +159,9 @@ const Settings = () => {
               </Button>
             </form>
           </CardContent>
-        </Card>
+        </Card> */}
 
-        {/* Notification Settings */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Notifications</CardTitle>
-            <CardDescription>
-              Configure how you want to receive notifications
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleNotificationSubmit} className="space-y-6">
-              <div className="flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <Label htmlFor="email-notifications">Email Notifications</Label>
-                  <p className="text-sm text-gray-500">
-                    Receive notifications via email
-                  </p>
-                </div>
-                <Switch
-                  id="email-notifications"
-                  checked={notifications.emailNotifications}
-                  onCheckedChange={(checked) => handleNotificationChange('emailNotifications', checked)}
-                />
-              </div>
-              
-              <div className="flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <Label htmlFor="push-notifications">Push Notifications</Label>
-                  <p className="text-sm text-gray-500">
-                    Receive push notifications in your browser
-                  </p>
-                </div>
-                <Switch
-                  id="push-notifications"
-                  checked={notifications.pushNotifications}
-                  onCheckedChange={(checked) => handleNotificationChange('pushNotifications', checked)}
-                />
-              </div>
-              
-              <div className="flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <Label htmlFor="weekly-reports">Weekly Reports</Label>
-                  <p className="text-sm text-gray-500">
-                    Receive weekly activity reports
-                  </p>
-                </div>
-                <Switch
-                  id="weekly-reports"
-                  checked={notifications.weeklyReports}
-                  onCheckedChange={(checked) => handleNotificationChange('weeklyReports', checked)}
-                />
-              </div>
-              
-              <Button
-                type="submit"
-                className="w-full bg-green-600 hover:bg-green-700"
-              >
-                Save Preferences
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
       </div>
-
-      {/* Account Actions */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Account Actions</CardTitle>
-          <CardDescription>
-            Manage your account security and data
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between p-4 bg-yellow-50 rounded-lg">
-              <div>
-                <h3 className="font-medium text-yellow-900">Change Password</h3>
-                <p className="text-sm text-yellow-700">Update your account password</p>
-              </div>
-              <Button variant="outline" className="border-yellow-300 text-yellow-700 hover:bg-yellow-100">
-                Change Password
-              </Button>
-            </div>
-            
-            <div className="flex items-center justify-between p-4 bg-red-50 rounded-lg">
-              <div>
-                <h3 className="font-medium text-red-900">Delete Account</h3>
-                <p className="text-sm text-red-700">Permanently delete your account and all data</p>
-              </div>
-              <Button variant="outline" className="border-red-300 text-red-700 hover:bg-red-100">
-                Delete Account
-              </Button>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 };
