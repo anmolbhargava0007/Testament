@@ -14,12 +14,12 @@ const Layout = () => {
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col ml-64">
         {/* Fixed Top Navigation */}
-        <div className="fixed top-0 right-0 left-64 z-10">
+        {/* <div className="fixed top-0 right-0 left-64 z-10">
           <TopNavigation />
-        </div>
+        </div> */}
         
         {/* Scrollable Content */}
-        <main className="flex-1 p-6 mt-20 overflow-y-auto">
+        <main className="flex-1 p-6 overflow-y-auto">
           <Outlet />
         </main>
       </div>

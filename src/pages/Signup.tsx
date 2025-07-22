@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
+import logo from './../../public/logo.png';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +16,7 @@ const Signup = () => {
     user_email: '',
     user_pwd: '',
     user_mobile: '',
-    gender: '',
+    gender: 'male',
   });
   const [loading, setLoading] = useState(false);
   const { signup } = useAuth();
@@ -50,7 +51,7 @@ const Signup = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Create an account</CardTitle>
+          <img src={logo} alt="Logo" className="mx-auto w-46 h-16 object-contain" />
           <CardDescription className="text-center">
             Enter your information to get started
           </CardDescription>
@@ -69,7 +70,7 @@ const Signup = () => {
                 className="h-11"
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="user_email">Email</Label>
               <Input
@@ -82,7 +83,7 @@ const Signup = () => {
                 className="h-11"
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="user_mobile">Mobile Number</Label>
               <Input
@@ -95,21 +96,7 @@ const Signup = () => {
                 className="h-11"
               />
             </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="gender">Gender</Label>
-              <Select onValueChange={(value) => handleInputChange('gender', value)} required>
-                <SelectTrigger className="h-11">
-                  <SelectValue placeholder="Select your gender" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="MALE">Male</SelectItem>
-                  <SelectItem value="FEMALE">Female</SelectItem>
-                  <SelectItem value="OTHER">Other</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="user_pwd">Password</Label>
               <Input
@@ -122,7 +109,7 @@ const Signup = () => {
                 className="h-11"
               />
             </div>
-            
+
             <Button
               type="submit"
               className="w-full h-11 bg-blue-600 hover:bg-blue-700"
@@ -131,7 +118,7 @@ const Signup = () => {
               {loading ? 'Creating account...' : 'Create account'}
             </Button>
           </form>
-          
+
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Already have an account?{' '}

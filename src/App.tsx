@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
 import Layout from "./components/Layout";
@@ -14,9 +13,16 @@ import TestCase from "./pages/TestCase";
 
 const queryClient = new QueryClient();
 
+// 👇 Public route: redirect to /testcase if already logged in
 const PublicRoute = ({ children }: { children: React.ReactNode }) => {
   const { user } = useAuth();
-  return !user ? <>{children}</> : <Navigate to="/dashboard" />;
+  return !user ? <>{children}</> : <Navigate to="/testcase" />;
+};
+
+// 👇 Private route: redirect to /login if not authenticated
+const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user } = useAuth();
+  return user ? <>{children}</> : <Navigate to="/login" />;
 };
 
 const App = () => (
@@ -27,22 +33,32 @@ const App = () => (
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={
-              <PublicRoute>
-                <Login />
-              </PublicRoute>
-            } />
-            <Route path="/signup" element={
-              <PublicRoute>
-                <Signup />
-              </PublicRoute>
-            } />
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Navigate to="/dashboard" />} />
+            {/* Public Login route */}
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+
+            {/* Private routes within layout */}
+            <Route
+              path="/"
+              element={
+                <PrivateRoute>
+                  <Layout />
+                </PrivateRoute>
+              }
+            >
+              <Route index element={<Navigate to="/testcase" />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="testcase" element={<TestCase />} />
               <Route path="settings" element={<Settings />} />
             </Route>
+
+            {/* Fallback */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
